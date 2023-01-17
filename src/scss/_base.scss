@@ -1,0 +1,248 @@
+//____________________
+//------HELPERS-------
+//====================
+
+// -----VARIABLES-----
+
+// ------Color Variables-------
+$color-white: #fff;
+$color-black: #000;
+$color-grey: #777;
+$color-grey-dark: darken($color-grey, 25%);
+$color-grey-light: darken($color-white, 15%);
+
+$color-map: (
+  primary: #111,
+  accent: #111,
+  secondary: #222,
+  tertiary: #333,
+  headline: $color-white,
+  menu-items: #111,
+  text: $color-grey-dark,
+  link: #111,
+  body: $color-white,
+  container: $color-grey-light,
+);
+
+// ------FONT VARIABLES-------
+
+//-----Font Family-----
+$font-primary: "Lato", Arial, sans-serif;
+// $font-secondary: ;
+// $font-tertiary: ;
+//-----Font Weight Map-----
+$font-weight-map: (
+  extra-bold: 900,
+  black: 800,
+  bold: 700,
+  semi-bold: 600,
+  medium: 500,
+  regular: 400,
+  light: 300,
+  extra-light: 200,
+  thin: 100,
+);
+//-----Font Size Map-----
+$font-size-map: (
+  hero: 4.8rem,
+  h1: 3.2rem,
+  h2: 2.4rem,
+  h3: 1.87rem,
+  normal: 1.6rem,
+  small: 1.3rem,
+  smaller: 1.2rem,
+  big: 1.9rem,
+  bigger: 2.1rem,
+);
+// -----SPACE: MARGIN / PADDING / SIZES-----
+
+// 1400px, 1024px, 680px, 480px, 320px.
+$breakpoint-map-up: (
+  x-large: 140rem,
+  large: 102.4rem,
+  medium: 68rem,
+  small: 48rem,
+);
+
+// 1300px, 1023px, 679px, 319px.
+$breakpoint-map-down: (
+  large: 139.9rem,
+  medium: 102.3rem,
+  small: 67.9rem,
+);
+
+//-----HEIGHT & WIDTH VARIABLES-----
+$height-header: 6rem;
+$height-footer: 6rem;
+$width-content-lg: 82%;
+$width-content-md: 90%;
+$width-content-sm: 114rem;
+
+// $width-content-lg: 114rem;
+// $width-content-md: 114rem;
+// $width-content-sm: 114rem;
+
+//-----SPACE VARIABLES-----
+// rems
+$sp-0-25: 0.25rem;
+$sp-0-5: 0.5rem;
+$sp-0-75: 0.75rem;
+$sp-1: 1rem;
+$sp-1-25: 1.25rem;
+$sp-1-5: 1.5rem;
+$sp-2: 2rem;
+$sp-3: 3rem;
+
+// ems
+$spe-0-25: 0.25em;
+$spe-0-5: 0.5em;
+$spe-0-75: 0.75em;
+$spe-1: 1rem;
+$spe-1-25: 1.25em;
+$spe-1-5: 1.5em;
+$spe-2: 2em;
+$spe-3: 3em;
+
+//-----Z-INDEX VARIABLES-----
+$z-tooltip: 10;
+$z-fixed: 100;
+$z-modal: 1000;
+
+//------Functions-------
+@function color($colr) {
+  @return map-get($map: $color-map, $key: $colr);
+}
+
+@function font-weight($weight) {
+  @return map-get($map: $font-weight-map, $key: $weight);
+}
+
+@function font-size($size) {
+  @return map-get($map: $font-size-map, $key: $size);
+}
+
+// -------------------
+// ------MIXINS-------
+// -------------------
+
+@mixin google-font($font, $weight-string) {
+  $font: unquote($font);
+  @import url("https://fonts.googleapis.com/css2?family=#{$font}:wght@#{$weight-string}&display=swap");
+}
+
+@include google-font("lato", "100;300;400,500,600");
+
+//_________________
+//------BASE-------
+//=================
+// -------------------
+// -----TYPOGRAPHY-----
+// -------------------
+// @include helpers.google-font(font-name1);
+// @include helpers.google-font(font-name2);
+// or
+// @import url();
+// @font-face {
+//   font-family: "fontName";
+//   font-weight: "400";
+//   src: url("./fonts/fontName-normal.ttf"); //IE-9 Compat Modes
+//   src: url("./fonts/fontName-normal.ttf") format("embeded-opentype"),
+//     url("./fonts/fontName-normal.ttf") format("woff"),
+//     url("./fonts/fontName-normal.ttf") format("woff2"),
+//     url("./fonts/fontName-normal.ttf") format("truetype"),
+//     url("./fonts/fontName-normal.ttf") format("svg");
+// }
+
+// Common weight name mapping
+// 100 - thin
+// 200 - extra-light
+// 300 - light
+// 400 - normal/regular
+// 500 - medium
+// 600 - semi-bold
+// 700 - bold
+// 800 - extra-bold
+// 900 - black
+
+// -------------------
+// -----GLOBALS-----
+// -------------------
+
+:root {
+  font-size: 10px;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: $font-primary;
+  font-size: font-size(normal);
+  background-color: color(body);
+  color: color(text);
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+main {
+}
+
+h1 {
+  margin: 0.67rem 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-style: none;
+}
+
+/*--- REUSEABLE CLASSES ---*/
+// .container,
+// .row {
+//   max-width: $width-content;
+//   margin: 0 auto;
+// }
+
+// .section {
+//   padding: $sp-2;
+// }
+
+// .section__title {
+//   font-size: $font-h2;
+// }
+
+// .section__sub-title {
+//   display: block;
+//   font-size: $font-h3;
+// }
+
+// .section__title,
+// .section__sub-title {
+//   text-align: center;
+//   letter-spacing: 1px;
+//   word-spacing: $sp-0-25;
+// }
